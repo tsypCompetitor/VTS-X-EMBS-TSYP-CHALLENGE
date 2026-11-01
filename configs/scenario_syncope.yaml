@@ -1,0 +1,22 @@
+# Syncope Scenario — EXPERIMENTAL_SIMULATION_PARAMETER values are not clinically validated
+scenario: syncope
+scenario_class: 1
+phases:
+  prodromal:
+    duration_seconds: [30, 120]  # EXPERIMENTAL_SIMULATION_PARAMETER
+    features_affected: [head_pitch, gaze_stability, heart_rate]
+    envelope:
+      t_p_range: [0, 5]
+      t_a_range: [10, 30]
+    magnitude_z: [2.5, 4.5]  # EXPERIMENTAL_SIMULATION_PARAMETER
+  acute:
+    duration_seconds: [5, 30]  # EXPERIMENTAL_SIMULATION_PARAMETER
+    features_affected: [head_pitch, head_velocity, lumbar_contact, heart_rate]
+    target_values:
+      head_pitch: 60.0   # degrees — EXPERIMENTAL_SIMULATION_PARAMETER
+      lumbar_contact: 0.1  # EXPERIMENTAL_SIMULATION_PARAMETER
+    envelope:
+      t_p_range: [0, 2]
+      t_a_range: [3, 8]
+label_as_synthetic: true
+

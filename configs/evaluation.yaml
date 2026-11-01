@@ -1,0 +1,47 @@
+evaluation:
+  metrics:
+    - accuracy
+    - balanced_accuracy
+    - precision_macro
+    - recall_macro
+    - f1_macro
+    - f1_weighted
+    - f1_per_class
+    - confusion_matrix
+    - false_positive_rate
+    - false_negative_rate
+    - auroc
+
+  cabinguard_specific:
+    - prodromal_lead_time
+    - acute_detection_latency
+    - unintended_mrm_activation_rate
+    - distractor_rejection_rate
+    - conflict_abstention_rate
+    - sensor_failure_abstention
+    - seizure_torque_lockout_correctness
+
+  latency:
+    measure_preprocessing: true
+    measure_inference: true
+    measure_decision: true
+    percentiles: [50, 95, 99]
+
+  signal:
+    snr_before_after: true
+    heart_rate_mae: true
+    respiratory_rate_mae: true
+
+  security:
+    test_valid_frames: true
+    test_replayed_frames: true
+    test_tampered_frames: true
+    test_missing_frames: true
+
+  outputs:
+    confusion_matrix_png: true
+    training_curves_png: true
+    latency_distribution_png: true
+    lead_time_distribution_png: true
+    abstention_analysis_png: true
+

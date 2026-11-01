@@ -1,0 +1,28 @@
+# Seizure Scenario — EXPERIMENTAL_SIMULATION_PARAMETER values are not clinically validated
+# Oscillation frequency 3-6 Hz: from CABINGUARD methodology
+scenario: seizure
+scenario_class: 2
+phases:
+  prodromal:
+    duration_seconds: [10, 60]  # EXPERIMENTAL_SIMULATION_PARAMETER
+    features_affected: [gaze_stability, head_velocity]
+    magnitude_z: [2.0, 3.5]
+    envelope:
+      t_p_range: [0, 3]
+      t_a_range: [5, 15]
+  acute:
+    duration_seconds: [30, 120]  # EXPERIMENTAL_SIMULATION_PARAMETER
+    features_affected: [head_pitch, head_roll, wrist_velocity]
+    oscillation:
+      enabled: true
+      frequency_hz_range: [3.0, 6.0]  # From CABINGUARD methodology
+      amplitude_range: [0.5, 2.0]     # EXPERIMENTAL_SIMULATION_PARAMETER
+    envelope:
+      t_p_range: [0, 1]
+      t_a_range: [2, 5]
+steering_override:
+  lock_eps: true
+  torque_threshold_nm: 3.0
+  torque_rate_threshold_nm_s: 15.0
+label_as_synthetic: true
+

@@ -1,0 +1,42 @@
+datasets:
+  hf_driver:
+    name: "In-Cabin Behavior Driver Safe Drive"
+    enabled: true
+    hf_repo: "bigamma/In_Cabin_Behavior_Driver_safe_drive"
+    requires_hf_token: true
+    local_path: ./data/raw/hf_driver
+    cabinguard_role: visual_baseline
+    notes: "Access may be gated. Set HF_TOKEN. Inspect labels before assigning meaning."
+
+  ala_mahlak:
+    name: "Ala Mahlak Driver Monitoring Dataset"
+    enabled: true
+    kaggle_dataset: "abdoreldeeb/driver-monitoring-system-dataset"
+    local_path: ./data/raw/ala_mahlak
+    cabinguard_role: visual_monitoring_baseline
+    notes: "Do not infer classes from dataset name. Inspect labels first."
+
+  radar_vitals:
+    name: "Radar-Based Vital Sign Monitoring"
+    enabled: true
+    kaggle_dataset: "cybersimar08/radar-based-vital-sign-monitoring"
+    local_path: ./data/raw/radar_vitals
+    cabinguard_role: cardiorespiratory_signal_processing
+    notes: "NOT a driver incapacitation dataset. Signal processing experiments only."
+
+  adl:
+    name: "ADL Dataset"
+    enabled: true
+    kaggle_dataset: "mocasbu/adl-dataset"
+    local_path: ./data/raw/adl
+    cabinguard_role: activity_posture_temporal_TBD
+    notes: "Inspect contents before assigning role."
+
+  adms:
+    name: "Advance Driver Monitoring System Dataset"
+    enabled: true
+    kaggle_dataset: "smartcity12/adms-dataset"
+    local_path: ./data/raw/adms
+    cabinguard_role: visual_distractor_confounders
+    notes: "Use verified classes only. Never convert to medical diagnoses."
+

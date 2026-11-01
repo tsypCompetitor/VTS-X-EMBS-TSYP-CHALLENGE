@@ -1,0 +1,16 @@
+# Small Data-Center Profile: single_gpu_8gb (RTX 3050 Ti 4GB class)
+_base_: default.yaml
+
+hardware:
+  profile: single_gpu_8gb
+  num_workers: 4
+
+training:
+  batch_size: 32
+  gradient_accumulation_steps: 2   # effective batch = 64
+  max_epochs: 100
+  mixed_precision: true
+
+vision:
+  freeze_backbone: true
+

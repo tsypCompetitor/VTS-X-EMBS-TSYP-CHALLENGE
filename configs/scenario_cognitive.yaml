@@ -1,0 +1,24 @@
+# Cognitive-Autonomic Scenario — EXPERIMENTAL_SIMULATION_PARAMETER values not clinically validated
+# Oscillation frequency 4-8 Hz: from CABINGUARD methodology
+scenario: cognitive_autonomic
+scenario_class: 3
+phases:
+  prodromal:
+    duration_seconds: [60, 300]  # EXPERIMENTAL_SIMULATION_PARAMETER
+    features_affected: [gaze_stability, steering_torque, ibi_variability, perclos]
+    magnitude_z: [2.0, 3.0]
+    envelope:
+      t_p_range: [0, 10]
+      t_a_range: [15, 40]
+  acute:
+    duration_seconds: [30, 180]  # EXPERIMENTAL_SIMULATION_PARAMETER
+    features_affected: [head_velocity, wrist_velocity, gaze_stability]
+    oscillation:
+      enabled: true
+      frequency_hz_range: [4.0, 8.0]  # From CABINGUARD methodology
+      amplitude_range: [0.3, 1.5]     # EXPERIMENTAL_SIMULATION_PARAMETER
+    envelope:
+      t_p_range: [5, 20]
+      t_a_range: [30, 60]
+label_as_synthetic: true
+

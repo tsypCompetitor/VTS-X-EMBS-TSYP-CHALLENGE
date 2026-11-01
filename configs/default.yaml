@@ -1,0 +1,83 @@
+# CABINGUARD-ADI Default Configuration
+project:
+  name: cabinguard-adi
+  version: "0.1.0"
+  seed: 42
+  deterministic: true
+
+hardware:
+  profile: auto  # auto | cpu | single_gpu_8gb | single_gpu_16gb | single_gpu_24gb | multi_gpu
+  num_workers: 4
+  pin_memory: true
+  mixed_precision: true
+
+data:
+  root: ./data
+  manifests: ./data/manifests
+  features: ./data/features
+  synthetic: ./data/synthetic
+  split:
+    train: 0.70
+    val: 0.15
+    test: 0.15
+    subject_aware: true
+    seed: 42
+
+training:
+  batch_size: 64
+  max_epochs: 100
+  learning_rate: 1.0e-3
+  weight_decay: 1.0e-4
+  gradient_clip: 1.0
+  gradient_accumulation_steps: 1
+  early_stopping_patience: 15
+  checkpoint_dir: ./outputs/checkpoints
+  mixed_precision: true
+
+features:
+  window_seconds: 3.0
+  step_seconds: 0.5
+  fs_target: 100  # Hz
+
+calibration:
+  duration_seconds: 60
+  kappa: 300
+
+detection:
+  thresholds:
+    level1_max: 0.60
+    level2_min: 0.60
+    level2_max: 0.85
+    level3_min: 0.85
+    uncertainty_level2_max: 0.60
+    uncertainty_level3_max: 0.30
+    source_availability_min: 0.50
+  handshake_seconds: 4.0
+  uncertainty:
+    wf: 0.65
+    wa: 0.35
+
+models:
+  tcn:
+    input_channels: 19
+    num_blocks: 3
+    channel_sizes: [64, 128, 128]
+    kernel_size: 3
+    dropout: 0.2
+    num_classes: 5
+  gru:
+    input_size: 19
+    hidden_size: 128
+    num_layers: 1
+    dropout: 0.2
+    num_classes: 5
+
+vision:
+  freeze_backbone: true
+
+outputs:
+  dir: ./outputs
+  reports: ./outputs/reports
+  figures: ./outputs/figures
+  metrics: ./outputs/metrics
+
